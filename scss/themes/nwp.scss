@@ -1,0 +1,41 @@
+/**
+ * Theme: nwp
+ */
+
+// Variables
+@import "../variables";
+@import "nwp/colors";
+
+$primary-500: #e91e63;
+$primary-600: #d81b60;
+$primary-700: #c2185b;
+
+// Commons styles
+@import "nwp/styles";
+
+// Light theme (nwp)
+// Can be forced with data-theme="light"
+@import "nwp/light";
+
+// Dark theme (Auto)
+// Automatically enabled if user has Dark mode enabled
+@import "nwp/dark";
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark;
+  }
+}
+
+// Dark theme (Forced)
+// Enabled if forced with data-theme="dark"
+[data-theme="dark"] {
+  @include dark;
+}
+
+// Accent-color
+progress,
+[type="checkbox"],
+[type="radio"],
+[type="range"] {
+  accent-color: var(--primary);
+}

@@ -1,0 +1,144 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+
+// :root {
+//   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+//   font-size: 16px;
+//   line-height: 24px;
+//   font-weight: 400;
+
+//   color-scheme: light dark;
+//   color: rgba(255, 255, 255, 0.87);
+//   background-color: #242424;
+
+//   font-synthesis: none;
+//   text-rendering: optimizeLegibility;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+//   -webkit-text-size-adjust: 100%;
+// }
+
+
+// Import Pico
+@import "../scss/pico";
+
+/* Grid */
+body {
+    margin: 0;
+}
+
+main.center,
+main.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 7rem);
+    padding: 1rem 0;
+}
+
+.form article {
+    padding: 0;
+    overflow: hidden;
+}
+
+.form article div {
+    padding: 1rem;
+}
+
+@media (min-width: 576px) {
+    body > main.form {
+        padding: 1.25rem 0;
+    }
+
+    .form article div {
+        padding: 1.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    body > main.form {
+        padding: 1.5rem 0;
+    }
+
+    .form article div {
+        padding: 1.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    body > main.form {
+        padding: 1.75rem 0;
+    }
+
+    .form article div {
+        padding: 1.75rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    body > main.form {
+        padding: 2rem 0;
+    }
+
+    .form article div {
+        padding: 2rem;
+    }
+}
+
+/* Nav */
+summary[role="link"].secondary:is([aria-current],:hover,:active,:focus) {
+    background-color: transparent;
+    color: var(--secondary-hover);
+}
+
+/* Hero Image */
+.form article div:nth-of-type(2) {
+    display: none;
+    background-color: #374956;
+    background-image: url("assets/alessio-soggetti-8jeWeKdygfk-unsplash-1000x1200.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+@media (min-width: 992px) {
+    .grid > div:nth-of-type(2) {
+        display: block;
+    }
+}
+
+/* Footer */
+#app > footer {
+    padding: 1rem 0;
+}
+
+#app > nav.app-bar {
+    background-color: var(--background-color);
+    color: var(--color);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    box-shadow: var(--card-box-shadow);
+}
+
+#app > .hero {
+    margin-top: 3rem;
+}
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+  }
