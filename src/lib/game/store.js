@@ -18,3 +18,11 @@ export const _clicker = localStore('nwp_clicker', {
     workmax: 0
 });
 
+export const _settings = localStore('nwp_settings', {
+    op1: false,
+    op2: false,
+    op3: false,
+    op4: false
+});
+
+const addcomma = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

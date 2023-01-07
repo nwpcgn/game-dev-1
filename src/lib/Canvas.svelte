@@ -1,4 +1,10 @@
 <script>
+  import GridLeft from "./game/GridLeft.svelte";
+
+  import GridRight from "./game/GridRight.svelte";
+
+  import CssGrid from "./CssGrid.svelte";
+
   import { onMount, onDestroy } from "svelte";
   import { _clicker } from "./game/store";
   const addcomma = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -22,30 +28,42 @@
     interval;
   });
   let isClicked;
+  let img = {
+    on: './img/sc05.png',
+    off: './img/sc06.png'
+  }
 </script>
 
-{#if !isClicked}
-  <div style="background-image: url(./img/meiko0.jpg);" />
-{:else}
-  <div style="background-image: url(./img/meiko1.jpg);" />
-{/if}
+<div
+  style="
+  background-image: url(./img/fedorcbg.jpg); 
+  z-index: 22; 
+  background-size: cover;"
+/>
 
-<section
+<CssGrid>
+  <svelte:fragment slot="left">
+    <GridLeft src="./img/dandy11.png" />
+  </svelte:fragment>
+  <svelte:fragment slot="right">
+    <GridRight src="./img/sfw01.png" />
+  </svelte:fragment>
+
+  <section
+    on:mousedown={() => (isClicked = true)}
+    on:mouseup={() => (isClicked = false)}
+    on:click={clicked}
+    class:isClicked={isClicked}
+    style="background-image: url({isClicked ? img.on :img.off});"
+  />
+</CssGrid>
+
+<!-- <section
   on:mousedown={() => (isClicked = true)}
   on:mouseup={() => (isClicked = false)}
   on:click={clicked}
-/>
-
+/> -->
 <style>
-  section {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: calc(50% - 200px);
-    width: 400px;
-    z-index: 30;
-    cursor: pointer;
-  }
   div {
     position: absolute;
     top: 3rem;
@@ -60,5 +78,26 @@
     background-position: center;
     opacity: 1;
     transition: all 200ms ease-in-out;
+  }
+  section {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    max-height: 80%;
+    z-index: 30;
+    margin: 0;
+    padding: 0;
+    /* background-image: url(./img/fed00.png); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom center;
+    opacity: 1;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+  }
+  section.isClicked {
+    background-image: url(./img/fed02.png);
   }
 </style>

@@ -1,5 +1,6 @@
 <script>
   import { _clicker } from "./store";
+  export let role = "button";
   const save = () => {
     try {
       let o = JSON.stringify($_clicker);
@@ -61,7 +62,7 @@
 </script>
 
 <details bind:open={isOpen} role="list" dir="rtl">
-  <summary aria-haspopup="listbox" role="link" class="secondary">
+  <summary aria-haspopup="listbox" {role} class="secondary">
     <slot name="label">
       Save/Load</slot>
   </summary>
@@ -71,3 +72,14 @@
     <li><a href="#" on:click|preventDefault={reset}>reset</a></li>
   </ul>
 </details>
+
+
+
+<style>
+  ul {
+    text-align: center;
+  }
+</style>
+
+
+

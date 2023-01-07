@@ -1,18 +1,16 @@
 <script>
-  import Sidebar from "./Sidebar.svelte";
-  import Upgrader from "./lib/game/Upgrader.svelte";
-  import AppBar from "./lib/AppBar.svelte";
-  import Canvas from "./lib/Canvas.svelte";
-  // import Renderless from "./lib/Renderless.svelte";
+  import Game3 from "./lib/Game3.svelte";
+  import Game2 from "./lib/Game2.svelte";
   import { onMount } from "svelte";
-  import TabCats from "./lib/game/TabCats.svelte";
-  import TabUnit from "./lib/game/TabUnit.svelte";
-  import Panel from "./lib/Panel.svelte";
-  import TabWork from "./lib/game/TabWork.svelte";
+  import AppBar from "./lib/appbar/AppBar.svelte";
+  import Game1 from "./lib/Game1.svelte";
+
+  import url from "./lib/util/url";
   console.log("App: initialized");
   onMount(() => {
     console.log("App: mounted");
   });
+  $: console.log($url.hash);
 </script>
 
 <!-- <Renderless id="Resizer" />  -->
@@ -22,18 +20,23 @@
 </svelte:head>
 
 <AppBar />
-<Canvas />
-<Sidebar>
-  <Upgrader />
-</Sidebar>
-<Sidebar right style="--w: 250px; --t: 200px;">
-  <Panel>
-    <TabUnit />
-  </Panel>
-  <Panel>
-    <TabCats />
-  </Panel>
-  <Panel>
-    <TabWork />
-  </Panel>
-</Sidebar>
+
+{#if $url.hash === "" || $url.hash === "#/"}
+  <Game1 />
+{:else if $url.hash === "#/settings"}
+  <Game3 />
+{:else if $url.hash === "#/upgrades"}
+  <Game2 />
+{:else}
+  <main>
+    <div class="container">
+      <h1>404</h1>
+    </div>
+  </main>
+{/if}
+
+<style>
+  main {
+    margin-top: 3rem;
+  }
+</style>

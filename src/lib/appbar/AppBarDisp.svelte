@@ -1,6 +1,6 @@
 <script>
-	import SvgMoney from './game/SvgMoney.svelte';
-  import { _clicker } from "./game/store";
+	import SvgMoney from '../game/SvgMoney.svelte';
+  import { _clicker } from "../game/store";
   const addcomma = (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   import { fade } from "svelte/transition";
   let visible = false;
